@@ -37,7 +37,7 @@ module.exports = {
         outputFriendlyName: 'Sparql connection report',
         outputDescription: 'A dictionary of information about what goes wrong.',
         outputType: {
-          loggedInsteadOfSending: 'boolean'
+          results: 'boolean'
         }
       }
   
@@ -46,12 +46,12 @@ module.exports = {
   
     fn: async function(inputs, exits) {
         const {Client} = require('virtuoso-sparql-client');
-
+        const DbPediaClient = new Client('http://dbpedia.org/sparql');
         DbPediaClient.query('DESCRIBE <http://dbpedia.org/resource/Sardinia>')
             .then((results) => {
     // All done!
                 return exits.success({
-                    loggedInsteadOfSending: results
+                    results: results
                     });
             })
             .catch((err) => {

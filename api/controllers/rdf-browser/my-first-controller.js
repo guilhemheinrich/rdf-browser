@@ -28,6 +28,8 @@ module.exports = {
 
 
   fn: async function(inputs, exits) {
+    var test = await sails.helpers.connectToSparql.with({endpoint : 'http://dbpedia.org/sparql', port : 8080});
+
     return exits.success();
   }
 };
